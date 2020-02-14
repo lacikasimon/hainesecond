@@ -22,14 +22,14 @@
     <div class="main-container">
         <div class="container">
             <div class="row">
-    
+
                 @include('post.inc.notification')
-                
+
                 <div class="col-md-12 page-content">
                     <div class="inner-box">
-						
+
                         <h2 class="title-2"><strong><i class="icon-camera-1"></i> {{ t('Photos') }}</strong></h2>
-						
+
                         <div class="row">
                             <div class="col-md-12">
                                 <form class="form-horizontal" id="postForm" method="POST" action="{{ url()->current() }}" enctype="multipart/form-data">
@@ -38,7 +38,7 @@
                                     <fieldset>
                                         @if (isset($picturesLimit) and is_numeric($picturesLimit) and $picturesLimit > 0)
                                             <!-- Pictures -->
-											<?php $picturesError = (isset($errors) and $errors->has('pictures')) ? ' is-invalid' : ''; ?>
+											<?php $picturesError = (isset($errors) and $errors->has('pictures')) ? ' is-invalid' : '';?>
                                             <div id="picturesBloc" class="form-group row">
 												<label class="col-md-3 control-label{{ $picturesError }}" for="pictures"> {{ t('Pictures') }} </label>
 												<div class="col-md-8"></div>
@@ -56,8 +56,8 @@
                                         @endif
                                         <div id="uploadError mt-2" style="display: none;"></div>
                                         <div id="uploadSuccess" class="alert alert-success fade show mt-2" style="display: none;"></div>
-                                    
-                                    
+
+
                                         <!-- Button -->
                                         <div class="form-group row mt-4">
                                             <div class="col-md-12 text-center">
@@ -67,7 +67,7 @@
                                                 <a id="nextStepAction" href="{{ url($nextStepUrl) }}" class="btn btn-default btn-lg">{{ t('Skip') }}</a>
                                             </div>
                                         </div>
-                                    
+
                                     </fieldset>
                                 </form>
                             </div>
@@ -106,13 +106,13 @@
         /* Initialize with defaults (pictures) */
         @if (isset($post, $picturesLimit) and is_numeric($picturesLimit) and $picturesLimit > 0)
         <?php
-            // Get Upload Url
-            if (getSegment(2) == 'create') {
-                $uploadUrl = lurl('posts/create/' . $post->tmp_token . '/photos/');
-            } else {
-                $uploadUrl = lurl('posts/' . $post->id . '/photos/');
-            }
-        ?>
+// Get Upload Url
+if (getSegment(2) == 'create') {
+	$uploadUrl = lurl('posts/create/' . $post->tmp_token . '/photos/');
+} else {
+	$uploadUrl = lurl('posts/' . $post->id . '/photos/');
+}
+?>
             $('#pictureField').fileinput(
             {
 				theme: "fa",
@@ -152,23 +152,23 @@
                 @for($i = 0; $i <= $picturesLimit-1; $i++)
                     @continue(!$post->pictures->has($i) or !isset($post->pictures->get($i)->filename))
                     <?php
-					// Get the file path
-					$filePath = $post->pictures->get($i)->filename;
-					
-                    // Get the file's deletion URL
-                    if (getSegment(2) == 'create') {
-                        $initialPreviewConfigUrl = lurl('posts/create/' . $post->tmp_token . '/photos/' . $post->pictures->get($i)->id . '/delete');
-                    } else {
-                        $initialPreviewConfigUrl = lurl('posts/' . $post->id . '/photos/' . $post->pictures->get($i)->id . '/delete');
-                    }
-                    
-                    // Get the file size
-					try {
-						$fileSize = (isset($disk) && $disk->exists($filePath)) ? (int)$disk->size($filePath) : 0;
-					} catch (\Exception $e) {
-						$fileSize = 0;
-					}
-                    ?>
+// Get the file path
+$filePath = $post->pictures->get($i)->filename;
+
+// Get the file's deletion URL
+if (getSegment(2) == 'create') {
+	$initialPreviewConfigUrl = lurl('posts/create/' . $post->tmp_token . '/photos/' . $post->pictures->get($i)->id . '/delete');
+} else {
+	$initialPreviewConfigUrl = lurl('posts/' . $post->id . '/photos/' . $post->pictures->get($i)->id . '/delete');
+}
+
+// Get the file size
+try {
+	$fileSize = (isset($disk) && $disk->exists($filePath)) ? (int) $disk->size($filePath) : 0;
+} catch (\Exception $e) {
+	$fileSize = 0;
+}
+?>
                     {
                         caption: '{{ last(explode(DIRECTORY_SEPARATOR, $filePath)) }}',
                         size: {{ $fileSize }},
@@ -178,10 +178,10 @@
                 @endfor
                 ],
                 @endif
-				
+
                 /* elErrorContainer: '#uploadError', */
 				/* msgErrorClass: 'file-error-message', */ /* @todo: depreciated. */
-				
+
 				uploadClass: 'btn btn-success'
             });
         @endif
@@ -199,15 +199,15 @@
 					return true;
 				}
 			}
-			
+
 			return false;
 		});
-		
+
 		/* Show upload status message */
         $('#pictureField').on('filebatchpreupload', function(event, data, id, index) {
             $('#uploadSuccess').html('<ul></ul>').hide();
         });
-		
+
 		/* Show success upload message */
         $('#pictureField').on('filebatchuploadsuccess', function(event, data, previewId, index) {
             /* Show uploads success messages */
@@ -220,10 +220,10 @@
             });
             $('#uploadSuccess ul').append(out);
             $('#uploadSuccess').fadeIn('slow');
-            
+
             /* Change button label */
             $('#nextStepAction').html('{{ $nextStepLabel }}').removeClass('btn-default').addClass('btn-primary');
-            
+
             /* Check redirect */
             var maxFiles = {{ (isset($picturesLimit)) ? (int)$picturesLimit : 1 }};
             var oldFiles = {{ (isset($post) and isset($post->pictures)) ? $post->pictures->count() : 0 }};
@@ -234,12 +234,12 @@
 				redirect(nextStepUrl);
             }
         });
-		
+
 		/* Reorder (Sort) files */
 		$('#pictureField').on('filesorted', function(event, params) {
 			picturesReorder(params);
 		});
-		
+
 		/* Delete picture */
         $('#pictureField').on('filepredelete', function(jqXHR) {
             var abort = true;
@@ -259,9 +259,9 @@
 			if (typeof params.stack === 'undefined') {
 				return false;
 			}
-			
+
 			waitingDialog.show('{{ t('Processing') }}...');
-	
+
 			$.ajax({
 				method: 'POST',
 				url: siteUrl + '/ajax/post/pictures/reorder',
@@ -270,25 +270,25 @@
 					'_token': $('input[name=_token]').val()
 				}
 			}).done(function(data) {
-				
+
 				waitingDialog.hide();
-				
+
 				if (typeof data.status === 'undefined') {
 					return false;
 				}
-		
+
 				/* Reorder Notification */
 				if (data.status == 1) {
 					$('#uploadSuccess').html('<ul></ul>').hide();
 					$('#uploadSuccess ul').append('{{ t('Your picture has been reorder successfully') }}');
 					$('#uploadSuccess').fadeIn('slow');
 				}
-		
+
 				return false;
 			});
-	
+
 			return false;
 		}
     </script>
-    
+
 @endsection
