@@ -12,55 +12,55 @@ return [
 	*/
 	
 	// phone_verification
-	'phone_verification_content'    => ':appName - Verify your phone number. The verification code is: :token. The verification URL is: :tokenUrl',
+	'phone_verification_content'    => ':appName - Verifica numarul tau de telefon. Codul de verificare este: :token. URL-ul de verificare este: :tokenUrl',
 	
 	
 	// post_activated (new)
-	'post_activated_content'        => ':appName - Your item ":title" has been activated',
+	'post_activated_content'        => ':appName - Produsul tau ":title" a fost activat',
 	
 	
 	// post_reviewed (new)
-	'post_reviewed_content'         => ':appName - Your item ":title" is now online',
+	'post_reviewed_content'         => ':appName - Produsul tau ":title" este acum online',
 	
 	
 	// post_republished (new)
-	'post_republished_content'         => ':appName - Your item ":title" has been re-published successfully',
+	'post_republished_content'         => ':appName - Produsul tau ":title" s-a republicat cu succes',
 	
 	
 	// post_deleted
-	'post_deleted_content'          => ':appName - Your ad ":title" has been deleted',
+	'post_deleted_content'          => ':appName - Anuntul tau ":title" s-a sters',
 	
 	
 	// post_seller_contacted
-	'post_seller_contacted_content' => ':appName - Post #:postId, ":message". Go to your user area to see this message.',
+	'post_seller_contacted_content' => ':appName - Post #:postId, ":message". Vezi la messaje.',
 	
 	
 	// user_deleted
-	'user_deleted_content'          => ':appName - Your account has been deleted.',
+	'user_deleted_content'          => ':appName - Contul tau s-a sters.',
 	
 	
 	// user_activated (new)
-	'user_activated_content'        => ':appName - Welcome :userName! Your account has been activated.',
+	'user_activated_content'        => ':appName - Bun venit :userName! Contul tau a fost activat cu succes.',
 	
 	
 	// reset_password
-	'reset_password_content'        => ':appName - Reset Your Password. The reset code is: :token',
+	'reset_password_content'        => ':appName - Reseteaza parola. Codul pentru resetare este: :token',
 	
 	
 	// post_archived
-	'post_archived_content'         => ':appName - Your ad ":title" has been archived',
+	'post_archived_content'         => ':appName - Anuntul tau ":title" a fost arhivat',
 	
 	
 	// post_will_be_deleted
-	'post_will_be_deleted_content'  => ':appName - Your ad ":title" will be deleted in :days days',
+	'post_will_be_deleted_content'  => ':appName - Anuntul tau ":title" se sterge in :days zile',
 	
 	
 	// payment_sent
-	'payment_sent_content'          => ':appName - We have received your payment for the ad ":title". Thank you!',
+	'payment_sent_content'          => ':appName - Am primit plata pentru anuntul ":title". Va multumim!',
 	
 	
 	// payment_approved (new)
-	'payment_approved_content'      => ':appName - Your payment for the ad ":title" has been approved. Thank you!',
+	'payment_approved_content'      => ':appName - Plata pentru ":title" a fost reusit. Va multumim!',
 	
 	
 	// post_seller_contacted
